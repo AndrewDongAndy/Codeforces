@@ -1,5 +1,5 @@
 // July 2, 2018
-// http://codeforces.com/problemset/problem/999/A
+// http://codeforces.com/contest/999/problem/A
 
 
 #include <bits/stdc++.h>
