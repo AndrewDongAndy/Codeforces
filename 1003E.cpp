@@ -8,15 +8,13 @@ int nextn = 1;
 vector< pair<int, int> > edges;
 
 
-
 void add_edges(int x, int deg, int depth) {
     if (depth == 0 || deg <= 0) return;
     for (int i = 0; i < deg; i++) {
+        if (nextn > N - 1) return;
         edges.push_back({x, nextn});
         add_edges(nextn++, K - 1, depth - 1);
     }
-
-    if (nextn > N - 1) return;
 }
 
 
@@ -46,9 +44,11 @@ int main() {
     }
 
     if (K == 1) {
-        cout << (N == 2 ? "YES" : "NO") << '\n';
         if (N == 2) {
-            cout << "1 2\n";
+            cout << "YES" << '\n';
+            cout << "1 2" << '\n';
+        } else {
+            cout << "NO" << '\n';
         }
         return 0;
     }
