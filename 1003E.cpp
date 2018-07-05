@@ -1,26 +1,39 @@
+// July 5, 2018
+// https://codeforces.com/contest/1003/problem/E
+
+/*
+Didn't solve during the contest. :(
+
+The reason I was MLEing was probably because of my checks
+in the dfs (which was previously called add_edges), which
+were too precise and were off by one. This resulted in the
+recursion going too deep and of course, adding too many
+edges which made it MLE.
+
+Obviously, it's nice to know I understand the problem
+fully by using precise == checks, but maybe in practice
+we should just be less precise and use >= or <=, depending
+on the circumstances.
+*/
+
+
 #include <bits/stdc++.h>
 
 using namespace std;
 
 
 int N, D, K;
-int nextn = 1;
+int total = 0;
 vector< pair<int, int> > edges;
 
 
-void add_edges(int x, int deg, int depth) {
+void dfs(int u, int deg, int depth) {
     if (depth == 0 || deg <= 0) return;
     for (int i = 0; i < deg; i++) {
-        if (nextn > N - 1) return;
-        edges.push_back({x, nextn});
-        add_edges(nextn++, K - 1, depth - 1);
-    }
-}
-
-
-void print_edges(int num_edges) {
-    for (int i = 0; i < num_edges; i++) {
-        cout << edges[i].first << ' ' << edges[i].second << '\n';
+        if (total == N) return;
+        int v = ++total;
+        edges.push_back({u, v});
+        dfs(v, K - 1, depth - 1);
     }
 }
 
@@ -34,11 +47,7 @@ int main() {
     cin >> N >> D >> K;
 
 
-    if (N == 1) {
-        cout << (D == 0 ? "YES" : "NO") << '\n';
-        return 0;
-    }
-    if (D > N - 1) {
+    if (N == 1 || D > N - 1) {
         cout << "NO\n";
         return 0;
     }
@@ -57,17 +66,19 @@ int main() {
     for (int i = 1; i <= D; i++) {
         edges.push_back({i, i + 1});
     }
-    nextn = D + 2;
+    total = D + 1;
 
     for (int i = 2; i <= D; i++) {
-        int depth = min(i - 1, D - (i - 1));
-        add_edges(i, K - 2, depth);
+        int depth = min(i - 1, D + 1 - i);
+        dfs(i, K - 2, depth);
     }
 
 
-    if ((int) edges.size() >= N - 1) {
+    if (total == N) {
         cout << "YES\n";
-        print_edges(N - 1);
+        for (auto e : edges) {
+            cout << e.first << ' ' << e.second << '\n';
+        }
     } else {
         cout << "NO\n";
     }
