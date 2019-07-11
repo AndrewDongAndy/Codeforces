@@ -29,7 +29,9 @@ int main() {
   while (n--) {
     long long a;
     cin >> a;
-    m[(((__int128) a * a * a * a - a * k) % p + p) % p]++;
+    long long a2 = a * a % p;
+    long long a4 = a2 * a2 % p;
+    m[((a4 - a * k) % p + p) % p]++;
   }
   long long ans = 0;
   for (auto pp : m) {
