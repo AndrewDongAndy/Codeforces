@@ -1,8 +1,8 @@
-// Month Day, Year
+// July 12, 2019
 // https://codeforces.com/contest/1190/problem/D
 
 /*
-
+Will do future Codeforces contests this summer; Photoshop is done!
 */
 
 
