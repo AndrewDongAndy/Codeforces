@@ -2,7 +2,8 @@
 // https://codeforces.com/contest/1194/problem/A
 
 /*
-
+lol I'm pretty fried
+the algorithm stops only when no more moves are possible
 */
 
 
