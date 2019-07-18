@@ -1,5 +1,5 @@
 // July 17, 2019
-//
+// https://codeforces.com/contest/1195/problem/F
 
 /*
 Nice Mo's algorithm problem, although I don't think it's that fair to require
