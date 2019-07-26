@@ -1,0 +1,60 @@
+// July 25, 2019
+// https://codeforces.com/contest/1191/problem/E
+
+/*
+The game either doesn't end or ends in 2 moves.
+
+Do some math and figure out why lol
+*/
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+int main() {
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+  cout.tie(0);
+
+#ifdef _DEBUG
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
+  freopen("debug_output.txt", "w", stderr);
+#endif
+
+
+  int n, k;
+  cin >> n >> k;
+  int ends[2][2] = {{n, -1}, {n, -1}}; // ends[i]: leftmost and rightmost cards in state i
+  int cur[2];
+  bool draw = false;
+  for (int i = 0; i < n; i++) {
+    char c;
+    cin >> c;
+    int a = c - '0';
+    ends[a][0] = min(ends[a][0], i);
+    ends[a][1] = max(ends[a][1], i);
+    cur[a]++;
+    if (cur[a] == k) {
+      draw = true;
+    }
+    cur[a ^ 1] = 0;
+  }
+  for (int i = 0; i <= 1; i++) {
+    if (ends[i][1] == -1 || ends[i][1] - ends[i][0] + 1 <= k) {
+      cout << "tokitsukaze\n"; // wins in one move
+      return 0;
+    }
+  }
+  for (int i = 0; i <= 1; i++) {
+    if (ends[i][1] - ends[i][0] + 1 >= k + 2 || (ends[i][0] >= k && ends[i][1] < n - k)) {
+      draw = true; // first player can force a draw
+    }
+  }
+  cout << (draw ? "once again" : "quailty") << '\n';
+
+
+  return 0;
+}
