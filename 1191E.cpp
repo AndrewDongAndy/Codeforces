@@ -2,7 +2,7 @@
 // https://codeforces.com/contest/1191/problem/E
 
 /*
-The game either doesn't end or ends in 2 moves.
+The game either doesn't v or v in 2 moves.
 
 Do some math and figure out why lol
 */
@@ -12,6 +12,11 @@ Do some math and figure out why lol
 
 using namespace std;
 
+
+int n, k;
+int v[2][2]; // v[i]: leftmost and rightmost cards in state i
+int cur[2];
+bool draw;
 
 int main() {
   ios::sync_with_stdio(0);
@@ -25,17 +30,16 @@ int main() {
 #endif
 
 
-  int n, k;
   cin >> n >> k;
-  int ends[2][2] = {{n, -1}, {n, -1}}; // ends[i]: leftmost and rightmost cards in state i
-  int cur[2];
-  bool draw = false;
+  v[0][0] = v[1][0] = n;
+  v[0][1] = v[1][1] = -1;
+  draw = false;
   for (int i = 0; i < n; i++) {
     char c;
     cin >> c;
     int a = c - '0';
-    ends[a][0] = min(ends[a][0], i);
-    ends[a][1] = max(ends[a][1], i);
+    v[a][0] = min(v[a][0], i);
+    v[a][1] = max(v[a][1], i);
     cur[a]++;
     if (cur[a] == k) {
       draw = true;
@@ -43,13 +47,13 @@ int main() {
     cur[a ^ 1] = 0;
   }
   for (int i = 0; i <= 1; i++) {
-    if (ends[i][1] == -1 || ends[i][1] - ends[i][0] + 1 <= k) {
+    if (v[i][1] == -1 || v[i][1] - v[i][0] + 1 <= k) {
       cout << "tokitsukaze\n"; // wins in one move
       return 0;
     }
   }
   for (int i = 0; i <= 1; i++) {
-    if (ends[i][1] - ends[i][0] + 1 >= k + 2 || (ends[i][0] >= k && ends[i][1] < n - k)) {
+    if (v[i][1] - v[i][0] + 1 >= k + 2 || (v[i][0] >= k && v[i][1] < n - k)) {
       draw = true; // first player can force a draw
     }
   }
