@@ -1,7 +1,10 @@
 // August 20, 2019
-// https://codeforces.com/contest/1204/problem/D
+// https://codeforces.com/contest/1204/problem/D1
+// https://codeforces.com/contest/1204/problem/D2
 
 /*
+Code works for both subtasks above.
+
 Not in-contest (unfortunately) and still don't know exactly why this works.
 */
 
