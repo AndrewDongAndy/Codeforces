@@ -1,5 +1,6 @@
 // March 19, 2020
-// https://codeforces.com/contest/1325/problem/D
+// https://codeforces.com/contest/1325/problem/D1
+// https://codeforces.com/contest/1325/problem/D2
 
 /*
 
