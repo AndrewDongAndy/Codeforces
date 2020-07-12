@@ -2,7 +2,7 @@
 // https://codeforces.com/contest/1372/problem/E
 
 /*
-
+Used editorial, but should have been able to solve this... :(
 */
 
 
