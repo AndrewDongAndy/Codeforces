@@ -2,7 +2,9 @@
 // https://codeforces.com/contest/1380/problem/F
 
 /*
+z = x + ((y - l + 1) << 1);
 
+Don't forget the 'x + ' part!
 */
 
 
