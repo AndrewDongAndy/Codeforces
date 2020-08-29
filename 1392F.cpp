@@ -2,11 +2,6 @@
 // https://codeforces.com/contest/1392/problem/F
 
 /*
-this is literally what happens when you neglect math
-
-Time to stop programming for a while?
-
-
 s = sum of a[i]
 find the integer x such that s >= x + (x + 1) + ... + (x + n - 1)
 but s < (x + 1) + (x + 2) + ... + (x + n)
