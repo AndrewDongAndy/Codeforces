@@ -4,6 +4,8 @@
 /*
 g++ -D _DEBUG -std=c++11 -Wl,--stack=268435456 -g -Wall -Wfatal-errors 1466G.cpp && a
 g++ -D _DEBUG -std=c++11 -Wl,--stack=268435456 -g -Wall -Wfatal-errors 1466G.cpp -ggdb && gdb a
+
+The KMP table is for the search word!
 */
 
 
@@ -194,19 +196,23 @@ Mint C(int n, int k) {
   return fact[n] * inv_fact[k] * inv_fact[n - k];
 }
 
+
 namespace kmp {
 
 template <typename T>
-vector<int> table(int n, const T& s) {
-  // p[i] is the length of the longest substring of s ending at index i
-  // which is also a prefix of s
-  vector<int> p(n, 0);
+vector<int> table(int m, const T& w) {
+  // p[i] is the length of the longest substring of w ending at index i
+  // which is also a prefix of w
+  // the variable names 'm' and 'w' are chosen to reflect that this
+  // function should be called on the search word, NOT the text
+  // (fail from Codeforces 1466G)
+  vector<int> p(m, 0);
   int k = 0;
-  for (int i = 1; i < n; i++) {
-    while (k > 0 && !(s[i] == s[k])) {
+  for (int i = 1; i < m; i++) {
+    while (k > 0 && !(w[i] == w[k])) {
       k = p[k - 1];
     }
-    if (s[i] == s[k]) {
+    if (w[i] == w[k]) {
       k++;
     }
     p[i] = k;
